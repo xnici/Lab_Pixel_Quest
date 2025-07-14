@@ -11,6 +11,7 @@ public class Geo_controller : MonoBehaviour
     int var = 3;
     private Rigidbody2D rb;
     public int speed = 10;
+    public string nextLevel = "Scene_2";
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +72,15 @@ public class Geo_controller : MonoBehaviour
 
 
                 }
+
+            case "Finish":
+                {
+
+
+                    SceneManager.LoadScene(nextLevel);
+                    break;
+                }
+
         
         
         }
