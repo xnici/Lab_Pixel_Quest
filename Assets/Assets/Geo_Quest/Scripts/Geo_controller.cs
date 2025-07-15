@@ -12,10 +12,16 @@ public class Geo_controller : MonoBehaviour
     private Rigidbody2D rb;
     public int speed = 10;
     public string nextLevel = "Scene_2";
+    private SpriteRenderer sr;
+    public int height = 4;
     // Start is called before the first frame update
     void Start()
     {
+
+
+
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         //Debug.Log("Hello World");
         //string y = "World";
         //Debug.Log(x+y);
@@ -31,6 +37,32 @@ public class Geo_controller : MonoBehaviour
         //rb.velocity = Vector2.left;
         //rb.velocity = new Vector2 (xInput, rb.velocity.y);
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            sr.color = Color.yellow;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            sr.color = Color.red;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            sr.color= Color.blue;
+        
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            rb.velocity = new Vector2(rb.velocity.x, height);
+        }
+            //float yInput = Input.GetAxis("Vertical");
+            //Debug.Log(xInput);
+            //rb.velocity = Vector2.left;
+            //rb.velocity = new Vector2 (xInput, rb.velocity.y);
+            //rb.velocity = new Vector2(rb.velocity.x, yInput*speed);
     }
 
         //Debug.Log(var);
