@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  nextLevel: Scene_2
+  nextLevel: Scene_3
   height: 4
 --- !u!58 &205674818
 CircleCollider2D:
