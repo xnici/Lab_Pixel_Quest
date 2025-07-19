@@ -19,6 +19,7 @@ public class HW2Bullet : MonoBehaviour
     //Flag and Timer 
     public float deathTime = 1.5f;   //How long before the bullet dies 
     public bool playerBullet = true; //Is the bullet used by player or enemy 
+   
 
     //==================================================================================================================
     // Base Method  
