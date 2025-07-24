@@ -8,10 +8,14 @@ public class PlayerStats : MonoBehaviour
     
     private int coinCounter = 0;
     public int _health = 3;
+    public float _maxHealth = 3;
     public Transform respawnPoint;
+    private PlayerUIController _playerUIController;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _playerUIController = GetComponent<PlayerUIController>();
+        _playerUIController.UpdateHealth(_health, _maxHealth);
 
     }
 
@@ -39,7 +43,8 @@ public class PlayerStats : MonoBehaviour
                         transform.position = respawnPoint.position;
 
                     }
-                        //string thisLevel = SceneManager.GetActiveScene().name;
+                    _playerUIController.UpdateHealth(_health, _maxHealth); 
+                    //string thisLevel = SceneManager.GetActiveScene().name;
                     //SceneManager.LoadScene(thisLevel);
                     //Debug.Log("Player Has Died");
                     break;
@@ -72,6 +77,7 @@ public class PlayerStats : MonoBehaviour
 
                         _health++;
                         Destroy(collision.gameObject);
+                        _playerUIController.UpdateHealth(_health, _maxHealth);
 
                     }
                     break;
