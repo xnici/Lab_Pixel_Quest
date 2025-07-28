@@ -5,18 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    
+    private int coinsInLevel = 0;
     private int coinCounter = 0;
     public int _health = 3;
     public float _maxHealth = 3;
     public Transform respawnPoint;
     private PlayerUIController _playerUIController;
+    private AudioController _audioController;
     // Start is called before the first frame update
     private void Start()
     {
+        coinsInLevel = GameObject.Find("Coins").transform.childCount;
         _playerUIController = GetComponent<PlayerUIController>();
         _playerUIController.UpdateHealth(_health, _maxHealth);
-
+        _playerUIController.UpdateCoin(coinCounter + "/" + coinsInLevel);
+        _audioController = GetComponent<AudioController>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class PlayerStats : MonoBehaviour
             case "Death":
                 {
                     _health--;
+                    _audioController.PlayAudio("death");
                     if (_health <= 0) 
                     { 
                         string thisLevel = SceneManager.GetActiveScene().name;
@@ -54,6 +58,7 @@ public class PlayerStats : MonoBehaviour
 
             case "Respawn":
                 {
+                    _audioController.PlayAudio("checkpoint");
                     respawnPoint.position = collision.transform.Find("Point").position; 
                     break;
                 }
@@ -62,8 +67,10 @@ public class PlayerStats : MonoBehaviour
 
             case "Coin": 
                 {
-                coinCounter++;
-                Destroy(collision.gameObject);
+                    coinCounter++;
+                    _audioController.PlayAudio("coin");
+                    _playerUIController.UpdateCoin(coinCounter + "/" + coinsInLevel);
+                    Destroy(collision.gameObject);
                     break; 
                 
                 
@@ -76,6 +83,7 @@ public class PlayerStats : MonoBehaviour
                     {
 
                         _health++;
+                        _audioController.PlayAudio("heart");
                         Destroy(collision.gameObject);
                         _playerUIController.UpdateHealth(_health, _maxHealth);
 
