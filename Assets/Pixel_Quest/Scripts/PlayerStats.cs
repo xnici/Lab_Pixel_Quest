@@ -17,9 +17,10 @@ public class PlayerStats : MonoBehaviour
     {
         coinsInLevel = GameObject.Find("Coins").transform.childCount;
         _playerUIController = GetComponent<PlayerUIController>();
+        _audioController = GetComponent<AudioController>();
         _playerUIController.UpdateHealth(_health, _maxHealth);
         _playerUIController.UpdateCoin(coinCounter + "/" + coinsInLevel);
-        _audioController = GetComponent<AudioController>();
+        
     }
 
     // Update is called once per frame
